@@ -133,14 +133,14 @@ if sales_file and remains_file:
         # ============
         # График прогноза, продаж и остатков
         base = alt.Chart(product_data).encode(x='forecast_date:T')
-        forecast_line = base.mark_line(color='red').encode(y='forecast:Q', tooltip=['forecast'])
+        forecast_line = base.mark_point(color='red').encode(y='forecast:Q', tooltip=['forecast'])
         actual_line = base.mark_line(color='blue').encode(y='actual_sales:Q', tooltip=['actual_sales'])
         remain_line = base.mark_line(color='green').encode(y='remain:Q', tooltip=['remain'])
 
         chart = (forecast_line + actual_line + remain_line).properties(
             title='Прогноз, фактические продажи и остатки',
             width=600,
-            height=400
+            height=800
         ).interactive()
 
         st.altair_chart(chart, use_container_width=True)
